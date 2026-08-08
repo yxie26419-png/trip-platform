@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences - Travel Journey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Travel Journey</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="form-container">
+            <h2>User Preferences</h2>
+            <form id="prefForm">
+                <div class="form-group">
+                    <label for="layout">Default Layout:</label>
+                    <select id="layout" name="layout">
+                        <option value="grid">Grid</option>
+                        <option value="list">List</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Save Preferences</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Travel Journey Sharing. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Check login
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('prefForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Preferences saved (simulated)');
+        });
+    </script>
+</body>
+</html>

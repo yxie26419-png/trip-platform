@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Details - Travel Journey</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-gpx@1.7.0/gpx.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Travel Journey</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="journey-details">
+            <h2>Trip to Paris</h2>
+            <p>By: admin | Created: 2024-01-01</p>
+            <p>A wonderful journey through the city of lights.</p>
+
+            <div class="media-gallery">
+                <img src="uploads/paris1.jpg" alt="Journey photo">
+                <video controls>
+                    <source src="uploads/paris_video.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div id="map" style="height: 400px;"></div>
+            <script>
+                const map = L.map('map').setView([48.8566, 2.3522], 10);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Simulate GPX (in real app, load from file)
+                // For demo, just add a marker
+                L.marker([48.8566, 2.3522]).addTo(map).bindPopup('Paris');
+            </script>
+
+            <div class="likes-comments">
+                <div class="likes">
+                    <span id="likeCount">5 likes</span>
+                    <button id="likeBtn" class="btn small">Like</button>
+                </div>
+
+                <div class="comments">
+                    <h3>Comments</h3>
+                    <form id="commentForm">
+                        <textarea id="commentText" placeholder="Add a comment..." required></textarea>
+                        <button type="submit" class="btn small">Post Comment</button>
+                    </form>
+                    <div id="commentsList">
+                        <div class="comment">
+                            <strong>demo:</strong> Looks amazing!
+                            <small>2024-01-02 10:00</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Travel Journey Sharing. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Check login
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        let liked = false;
+        document.getElementById('likeBtn').addEventListener('click', function() {
+            liked = !liked;
+            this.textContent = liked ? 'Unlike' : 'Like';
+            document.getElementById('likeCount').textContent = liked ? '6 likes' : '5 likes';
+        });
+
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const comment = document.getElementById('commentText').value;
+            const list = document.getElementById('commentsList');
+            const newComment = document.createElement('div');
+            newComment.className = 'comment';
+            newComment.innerHTML = '<strong>' + localStorage.getItem('username') + ':</strong> ' + comment + '<small>Just now</small>';
+            list.appendChild(newComment);
+            document.getElementById('commentText').value = '';
+        });
+    </script>
+</body>
+</html>

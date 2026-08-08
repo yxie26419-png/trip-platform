@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Travel Journey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Travel Journey</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="create_journey.html">Create Journey</a></li>
+                <li><a href="preference.html">Preferences</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="dashboard-container">
+            <h2 id="welcome">Welcome!</h2>
+            <div class="dashboard-actions">
+                <a href="create_journey.html" class="btn">Create New Journey</a>
+            </div>
+
+            <div class="layout-toggle">
+                <label>Layout: </label>
+                <select id="layoutSelect">
+                    <option value="grid">Grid</option>
+                    <option value="list">List</option>
+                </select>
+            </div>
+
+            <div class="journeys grid" id="journeys">
+                <!-- Sample journeys -->
+                <div class="journey-card">
+                    <h3>Trip to Paris</h3>
+                    <p>A wonderful journey through the city of lights.</p>
+                    <p>Created: 2024-01-01</p>
+                    <p>Photos: 2</p>
+                    <div class="journey-actions">
+                        <a href="journey_details.html?id=1" class="btn small">View Details</a>
+                        <a href="edit_journey.html?id=1" class="btn small">Edit</a>
+                        <button class="btn small danger" onclick="deleteJourney(1)">Delete</button>
+                    </div>
+                </div>
+                <div class="journey-card">
+                    <h3>Mountain Hiking</h3>
+                    <p>An adventurous hike in the mountains.</p>
+                    <p>Created: 2024-02-01</p>
+                    <p>Photos: 1</p>
+                    <div class="journey-actions">
+                        <a href="journey_details.html?id=2" class="btn small">View Details</a>
+                        <a href="edit_journey.html?id=2" class="btn small">Edit</a>
+                        <button class="btn small danger" onclick="deleteJourney(2)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Travel Journey Sharing. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Check login
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        } else {
+            document.getElementById('welcome').textContent = 'Welcome, ' + localStorage.getItem('username') + '!';
+        }
+
+        document.getElementById('layoutSelect').addEventListener('change', function() {
+            const layout = this.value;
+            document.getElementById('journeys').className = 'journeys ' + layout;
+        });
+
+        function deleteJourney(id) {
+            if (confirm('Are you sure?')) {
+                // Simulate delete
+                alert('Journey deleted (simulated)');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Journey - Travel Journey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Travel Journey</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="form-container">
+            <h2>Edit Journey</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" value="Trip to Paris" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="4">A wonderful journey through the city of lights.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Existing Media:</label>
+                    <div class="existing-media">
+                        <div class="media-item">
+                            <input type="checkbox" name="delete_media" value="1">
+                            uploads/paris1.jpg (photo)
+                        </div>
+                        <div class="media-item">
+                            <input type="checkbox" name="delete_media" value="2">
+                            uploads/paris_video.mp4 (video)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="media">Add New Media:</label>
+                    <input type="file" id="media" name="media" multiple accept=".jpg,.jpeg,.png,.mp4,.gpx">
+                </div>
+                <button type="submit" class="btn">Update Journey</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Travel Journey Sharing. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Check login
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Journey updated (simulated)');
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

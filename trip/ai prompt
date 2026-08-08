@@ -1,0 +1,165 @@
+1. Generate Project Folder Structure
+text
+Generate a PHP + MySQL dynamic website folder structure for a travel journey sharing system. Include: index.php, register.php, login.php, dashboard.php, create_journey.php, journey_details.php, logout.php, style.css, script.js, and a config folder for database configuration.
+2. Generate Database SQL Script
+text
+Generate a MySQL database script with database name trip_journey, containing the following tables:
+- users: id, username, password, email, created_at
+- journeys: id, user_id, title, description, created_at
+- media: id, journey_id, type (photo/video/gpx), file_path
+- comments: id, journey_id, user_id, comment, created_at
+- likes: id, journey_id, user_id
+
+Include sample data and foreign key constraints.
+II. User Registration & Login
+3. Registration Page (PHP + HTML + JS)
+text
+Generate a PHP registration page register.php containing:
+- HTML form: username, email, password, confirm password
+- Client-side JavaScript validation (password strength, email format)
+- Server-side PHP validation, store password using password_hash()
+- Show error if username or email already exists
+- Redirect to login page after successful registration
+- Style the form with CSS
+4. Login Page + Session Management
+text
+Generate a PHP login page login.php containing:
+- Username/email + password login form
+- Validate credentials using password_verify()
+- Start session after successful login, store user_id and username
+- Set a cookie to remember user preferences (optional "remember me" feature)
+- Show error message on login failure
+- Redirect to dashboard.php after successful login
+III. Journey Management (CRUD)
+5. User Dashboard (Display My Journeys)
+text
+Generate dashboard.php with the following requirements:
+- Check session, redirect unauthenticated users to login.php
+- Query all journeys of the currently logged-in user from the database
+- Display each journey's title, description, creation time, and number of photos as cards or in a list
+- Each card has "View Details", "Edit", "Delete" buttons
+- A "Create New Journey" button
+- Use CSS Grid or Flexbox layout
+6. Create Journey Page (with File Upload)
+text
+Generate create_journey.php containing:
+- Form: title, description, multi-file upload (images, videos, GPX)
+- File type restrictions: jpg/png/mp4/gpx
+- Save uploaded files to uploads/ directory, store paths in media table
+- Store journey info in journeys table
+- Support uploading multiple media files at once
+- Optional frontend upload progress bar
+7. Edit Journey Page
+text
+Generate edit_journey.php that accepts a journey_id parameter with the following requirements:
+- Only allow the journey author to edit
+- Pre-fill the form with existing title and description
+- Allow uploading new files and deleting existing media files
+- Update the database
+8. Delete Journey
+text
+Generate delete_journey.php that accepts a journey_id with the following requirements:
+- Only allow the author to delete
+- Delete associated media files (physical files + database records)
+- Redirect to dashboard.php after deletion
+- Use POST method to prevent CSRF (optional token)
+IV. Map & GPX Track Display
+9. Display GPX Track on Journey Details Page (Leaflet + GPX Plugin)
+text
+Generate journey_details.php that accepts a journey_id with the following requirements:
+- Display journey title, description, all images and videos
+- If the journey has a GPX file, display the track on a map using Leaflet.js and leaflet-gpx plugin
+- Map should be zoomable and pannable
+- Show start and end point markers
+- Hide map area if no GPX file exists
+- Use CSS to set map height to 400px
+V. User Interaction (Comments + Likes)
+10. Comment Functionality (Display + Add)
+text
+Add comment functionality to journey_details.php:
+- Display all comments for the journey (username + comment content + timestamp)
+- A form for logged-in users to add comments
+- Submit comments via AJAX without page refresh
+- Backend PHP handles inserting comments into the database
+11. Like Functionality (AJAX)
+text
+Add like functionality to journey_details.php:
+- Display current like count
+- Logged-in users can like/unlike (toggle)
+- Update like status via AJAX without page refresh
+- Backend receives journey_id and checks if already liked
+VI. Frontend Styling & Interactivity
+12. Global CSS Styles
+text
+Generate a style.css file for a travel sharing website:
+- Navigation bar (Login, Register, Dashboard, Logout)
+- Card-based layout
+- Responsive design (mobile friendly)
+- Soft background colors, rounded buttons, shadow effects
+- Consistent form styling
+13. Global JavaScript Interactions
+text
+Generate script.js containing:
+- Mobile menu toggle
+- Form frontend validation
+- Image upload preview
+- Confirmation dialog for deleting media files
+- AJAX wrapper for like and comment functionality
+VII. Cookie Preferences
+14. User Preference Settings
+text
+Generate preference.php or modify dashboard.php:
+- Add a dropdown or toggle switch for users to select "default layout" (grid/list)
+- Save this preference using setcookie() with 30-day expiration
+- Read the cookie and apply the layout preference to dashboard journey display
+VIII. Additional Pages (Minimum 6 Pages Requirement)
+15. Extra Pages
+text
+Generate the following additional pages to meet the minimum 6 pages requirement:
+- about.php: About this website
+- contact.php: Contact form (optional)
+- gallery.php: Display all public journey photos from all users (waterfall/pinterest layout)
+- video_page.php: Display all uploaded videos
+- map_overview.php: Show an overview of all journey GPX tracks on a single map
+IX. Video Introduction Page (1-Minute Video)
+16. Video Introduction Page
+text
+Generate video_intro.php that embeds a 1-minute introduction video (MP4 format) introducing the website features. Requirements:
+- Video can be set to autoplay and loop (optional)
+- Text description below the video
+- Responsive design
+X. Deployment Related
+17. Database Connection File
+text
+Generate config/db.php containing:
+- PDO connection to MySQL database
+- Exception handling
+- Set charset to utf8mb4
+- Define website root path constant
+18. Logout Functionality
+text
+Generate logout.php:
+- Destroy session
+- Clear all session variables
+- Optionally delete remember login cookie
+- Redirect to login page
+Bonus Features (Optional)
+19. Additional Bonus Features
+text
+Implement one of the following bonus features for the travel journey website:
+- A simple game (e.g., memory matching game related to travel)
+- Augmented Reality / Virtual Reality element (e.g., 360-degree photo viewer)
+- Real-time chat room similar to WhatsApp/WeChat for users to discuss journeys
+- Or suggest your own creative feature
+
+Requirements: PHP backend, JavaScript frontend, database integration if needed
+Final Submission Helper
+20. Generate README
+text
+Generate a README.md file for my travel journey sharing website project containing:
+- Project title and description
+- List of all files and their purposes
+- Database setup instructions
+- Default login credentials (admin/admin or demo user)
+- Technologies used (PHP, MySQL, HTML5, CSS, JavaScript, Leaflet.js)
+- Bonus features implemented (if any)
